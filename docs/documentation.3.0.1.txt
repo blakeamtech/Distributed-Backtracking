@@ -1,0 +1,33 @@
+╔══════════╦════════════════════════════════════════╦═══════════════════╦═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
+║   FLAG   ║                ARGUMENT                ║      DEFAULT      ║                                                         USAGE                                                         ║
+╠══════════╬════════════════════════════════════════╬═══════════════════╬═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╣
+║    -B    ║ 0 | 1                                  ║ 1                 ║ Whether progress bar is drawn; not drawn if 0; drawn otheriwse                                                        ║
+║    -b    ║ Single integer                         ║ 0                 ║ Lower (left) bound for binary search                                                                                  ║
+║    -C    ║ String with no spaces                  ║ "clingo"          ║ Location of clingo compiler                                                                                           ║
+║    -c    ║ Single integer                         ║ 0                 ║ Maximum number of solutions to be found by commander; 0 if no limit                                                   ║
+║    -D    ║ Single integer                         ║ 1                 ║ Number of collector DFS threads                                                                                       ║
+║    -d    ║ Single integer                         ║ 0                 ║ Minimum depth to which commander descends for worker assignments                                                      ║
+║    -F    ║ String with no spaces                  ║ ""                ║ Suffix added to names of all log, summary, and restart files produced                                                 ║
+║    -g    ║ Single integer                         ║ 0                 ║ Size of 'gauge case' used to estimate processor frequency in permutations/second; 0 if no gauge case is desired       ║
+║    -H    ║ String of integers separated by '-'    ║ ""                ║ Permutation prefix that defines a sub-tree to be searched; empty prefix indicates search of entire tree               ║
+║    -I    ║ String with no spaces                  ║ ""                ║ Target IP address; address of local socket for servers; address of remote server for subcommanders                    ║
+║    -i    ║ Single integer                         ║ -1                ║ Subcommander id; -1 indicates that no connection has yet been made                                                    ║
+║    -J    ║ 0 | 1 | 2                              ║ 0                 ║ Type of validity check employed by DFS threads; no check if 0; 1-second clingo check if 1; imported check method if 2 ║
+║    -L    ║ 0 | 1                                  ║ 1                 ║ Whether log files are created; not created if 0; created otherwise                                                    ║
+║    -l    ║ Single integer                         ║ 0                 ║ Permutation length; if 0, set to the maximum value of the element range (see -m)                                      ║
+║    -m    ║ Single integer                         ║ ---               ║ Permutation range; permutation will be composed of values in the interval [1, m]                                      ║
+║    -N    ║ 0 | 1 | 2                              ║ 0                 ║ Net code; defines internet function of commander; offline if 0; subcommander if 1; server if 2                        ║
+║    -n    ║ Single integer                         ║ 4                 ║ Number of worker threads                                                                                              ║
+║    -P    ║ 0 | 1                                  ║ 1                 ║ Whether repeats are allowed in the permutations; not allowed if 0; allowed otherwise                                  ║
+║    -p    ║ Single integer                         ║ 10000000          ║ Estimated frequency of processor in permutations/second                                                               ║
+║    -R    ║ 0 | 1                                  ║ 1                 ║ Whether restart file is created; not created if 0; created otherwise                                                  ║
+║    -r    ║ String with no spaces                  ║ ""                ║ Location of file from which to restart search; "" if no restart required                                              ║
+║    -S    ║ 0 | 1                                  ║ 1                 ║ Whether summary file created; not created if 0; created otherwise                                                     ║
+║    -T    ║ Single integer                         ║ 0                 ║ Time limit on commander program; program terminates after T seconds; no time limit if T=0                             ║
+║    -t    ║ Single integer                         ║ 0                 ║ Time limit on worker units; workers terminate after t second; no time limit if t=0                                    ║
+║    -u    ║ Single integer                         ║ -1                ║ Upper (right) bound for binary search; no binary search if -1                                                         ║
+║    -V    ║ 0 | 1                                  ║ 0                 ║ Whether commander is verbose; prints log data to stdout if 1; does not otherwise                                      ║
+║    -v    ║ 0 | 1                                  ║ 1                 ║ Whether commander is selectively verbose; prints ilog data to stdout if 1; does not otherwise                         ║
+║    -W    ║ String with no spaces                  ║ "costas.clingo"   ║ Loation of worker program                                                                                             ║
+╚══════════╩════════════════════════════════════════╩═══════════════════╩═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝
+

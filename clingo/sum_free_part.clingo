@@ -1,0 +1,8 @@
+
+partitions(1..k) .	% k partition values
+interval(1..m) .	% m elements of interval
+
+1 {setting(I, Part):partitions(Part)} 1 :- interval(I) . % partition interval into k sets
+
+:- interval(I;J), partitions(Part), setting(I, Part), setting(J, Part), setting(I+J, Part) . % ensure that all intervals are sum-free
+

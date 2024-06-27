@@ -1,0 +1,10 @@
+M = 15
+WORKERS = 200
+NAME = commander_2.2.1.go
+SUFFIX = .costas.$(M)
+CLINGO = ~raphael/bin/clingo
+WORKER = costas.streamlined.clingo
+DEPTH = 2
+
+runinfo:
+	echo "-mngCWFd $(M) $(WORKERS) -1 $(CLINGO) $(WORKER) $(SUFFIX) $(DEPTH)" | go run $(NAME)

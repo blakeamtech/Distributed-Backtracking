@@ -1,0 +1,14 @@
+N = 3
+BOUND = 20
+WORKERS = 4
+COLLECTORS = 1
+GAUGE = -1
+TIME = 0
+NAME = commander_2.3.0.go
+SUFFIX = schur.$(N)
+CLINGO = ~raphael/bin/local.x86_64/clingo
+WORKER = sum_free_part.clingo
+DEPTH = 9
+
+runinfo:
+	echo "-cJmntgbdCWDF 1 2 $(N) $(WORKERS) $(TIME) $(GAUGE) $(BOUND) $(DEPTH) $(CLINGO) $(WORKER) $(COLLECTORS) $(SUFFIX)" | go run $(NAME)

@@ -1,0 +1,78 @@
+% vim:filetype=prolog nospell:
+% Costas ruler: construct a permutation P of 1 .. m such that for each d in
+% [1..m-2], all of {P[i] - P[i+d]} are distinct.
+% Size 32 and 33 are unknown.
+% See http://datagenetics.com/blog/february22013/
+%
+% Raphael Finkel 10/2008, 6/2018
+
+fullRange(1..m) . % the ruler is a permutation of numbers 1 .. m
+subRange(1..m-1) . % differences in array index
+diff(1.. 2*m-1) .  % differences in array value, offset by m
+	% one can set diff(0..2*m-1), and that sometimes speeds up search.
+position(1..m) .
+
+% #domain fullRange(Row) . % Row is index, Col is value
+% #domain fullRange(Row1) . % Row is index, Col is value
+% #domain fullRange(Col) . % Row is index, Col is value
+% #domain fullRange(Col1) . % Row is index, Col is value
+% #domain subRange(Delta) .
+% #domain diff(Diff) .
+% #domain position(Pos) .
+
+% exactly one value in each index
+1 {setting(Row, Col_):fullRange(Col_)} 1 :- fullRange(Row) .
+
+% exactly one index for each value (no duplicates allowed)
+1 {setting(Row_, Col):fullRange(Row_)} 1 :- fullRange(Col) .
+
+% difference between values at Row and at Row+Delta is Diff
+delta(Delta, Row, Diff) :-
+	Row + Delta <= m , setting(Row, Col), Row+Delta == Row1,
+	setting(Row1, Col1),
+	Diff == m + Col1 - Col,
+	fullRange(Row;Row1), subRange(Delta) .
+:- delta(Delta, Row, Diff), Delta + Row > m . % uniqueness
+% not necessary, but seems to speed up clasp:
+	1 {delta(Delta, Row, Diff_):diff(Diff_)} 1 :-
+		Row + Delta <= m ,
+		subRange(Delta), fullRange(Row) .
+
+% constraint on differences
+0 {delta(Delta, Row_, Diff):fullRange(Row_)} 1 :-
+	Delta < m-1 ,
+	subRange(Delta), fullRange(Row), diff(Diff).
+
+% the following rules are optional to break symmetry
+:- setting(1, Col), setting(m, Col1), Col1 > Col , fullRange(Col;Col1) .
+:- setting(1, Col), Col < m/2 , fullRange(Col) .
+:- setting(1, Col), setting(Row, 1), Col > Row , fullRange(Row;Col) .
+
+% known good solution for m=4
+% setting(1, 3) .
+% setting(2, 4) .
+% setting(3, 2) .
+% setting(4, 1) .
+%
+
+% a streamliner:  require that the settings be a permutation with a single
+% cycle.  This streamliner doesn't speed up search.
+% permDistance(Row, N) means that after N steps through setting, you get Row
+%	permDistance(Col, 1) :- setting(1, Col).
+%	permDistance(Row, Pos+1) :- permDistance(Col, Pos), setting(Col, Row) .
+%	% must not get 1 until the end
+%	:- permDistance(1, Col), Col < m .
+
+% a streamliner: require that there be some short cycles
+2 {setting(Row_, Row_):fullRange(Row_)} .
+
+% a streamliner: require that there be a particular short cycle
+% setting(m-2, m-2) .
+
+% a streamliner: symmetric solution
+% setting(Row, Col) :- setting(Col, Row) , fullRange(Row;Col) .
+
+% a streamliner: inspection of the known Costas arrays shows there is always one
+% with a cycle (1).
+%setting(1, 1) .
+

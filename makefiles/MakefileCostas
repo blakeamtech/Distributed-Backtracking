@@ -1,0 +1,12 @@
+M = 5
+WORKERS = 4
+#NAME = commander_2.2.2.go
+NAME = commander_2.3.0.go
+SUFFIX = .costas.$(M)
+CLINGO = ~raphael/bin/local.x86_64/clingo
+WORKER = costas.clingo
+DEPTH = 3
+
+runinfo:
+	echo "-mngCWFdJP $(M) $(WORKERS) -1 $(CLINGO) $(WORKER) $(SUFFIX) $(DEPTH) 2 0" | go run $(NAME)
+	#echo "-mngCWFdJP $(M) $(WORKERS) -1 $(CLINGO) $(WORKER) $(SUFFIX) $(DEPTH) 2 0 -r restart.0$(SUFFIX).txt" | go run $(NAME)
